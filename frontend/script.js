@@ -7,13 +7,35 @@ const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
 
 // ===============================
-// SHARED MOVIE CARD RENDERER
+// SMART MOVIE RENDERER (AUTO-DETECTS CONTAINER)
 // ===============================
-function displayMovies(movies) {
-    const main = document.getElementById("main");
-    if (!main) return; // Page doesn't have a movie container
+function displayMovies(movies, containerId = null) {
+    let container = null;
 
-    main.innerHTML = "";
+    // 1. If a specific containerId was passed (Home page)
+    if (containerId) {
+        container = document.getElementById(containerId);
+    }
+
+    // 2. If no containerId, try #main (your original pages)
+    if (!container) {
+        container = document.getElementById("main");
+    }
+
+    // 3. If still no container, auto-detect the first .row inside a container
+    if (!container) {
+        container = document.querySelector(".container .row");
+    }
+
+    // 4. If still no container, fallback to ANY .row
+    if (!container) {
+        container = document.querySelector(".row");
+    }
+
+    // If nothing found, stop safely
+    if (!container) return;
+
+    container.innerHTML = "";
 
     movies.forEach(movie => {
         const col = document.createElement("div");
@@ -33,20 +55,29 @@ function displayMovies(movies) {
             window.location.href = `Details.html?id=${movie.id}`;
         };
 
-        main.appendChild(col);
+        container.appendChild(col);
     });
 }
 
 
 
 // ===============================
-// HOME PAGE (Popular Movies)
+// HOME PAGE (Multiple Sections)
 // ===============================
-async function loadPopular() {
-    const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
-    const data = await res.json();
-    displayMovies(data.results);
+async function loadHome() {
+    const [topRated, trending, latest, editors] = await Promise.all([
+        fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`).then(r => r.json()),
+        fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`).then(r => r.json()),
+        fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`).then(r => r.json()),
+        fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`).then(r => r.json())
+    ]);
+
+    displayMovies(topRated.results, "home-top-rated");
+    displayMovies(trending.results, "home-trending");
+    displayMovies(latest.results, "home-latest");
+    displayMovies(editors.results, "home-editors");
 }
+
 
 
 
@@ -67,8 +98,14 @@ async function loadTrending() {
 async function loadTopRated() {
     const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
     const data = await res.json();
-    displayMovies(data.results);
+
+    // Their page uses the FIRST .row inside the container
+    const container = document.querySelector(".container .row");
+    if (container) container.id = "main";
+
+    displayMovies(data.results, "main");
 }
+
 
 
 
@@ -142,7 +179,7 @@ async function loadDetails() {
 // ===============================
 const path = window.location.pathname;
 
-if (path.includes("index.html")) loadPopular();
+if (path.includes("index.html") || path.endsWith("/")) loadHome();
 if (path.includes("Trending.html")) loadTrending();
 if (path.includes("TopRated.html")) loadTopRated();
 if (path.includes("Latest.html")) loadLatest();

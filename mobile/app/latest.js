@@ -1,0 +1,82 @@
+import { ScrollView, StyleSheet, View, Text, Platform, ActivityIndicator } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Link } from 'expo-router';
+
+import Navbar from '../components/Navbar';
+import MovieSection from '../components/MovieSection';
+import { getNowPlaying } from './api';
+
+export default function LatestScreen() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadMovies() {
+      try {
+        const data = await getNowPlaying();
+        setMovies(data.results || []);
+      } catch (error) {
+        console.warn('Failed to load latest movies', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadMovies();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Navbar />
+      <ScrollView contentContainerStyle={[styles.content, Platform.OS === 'web' && styles.webContent]}>
+        <Text style={styles.title}>Latest Releases</Text>
+        <Text style={styles.subtitle}>This screen reproduces the Latest Releases section from the frontend files.</Text>
+        {loading ? (
+          <ActivityIndicator size="large" color="#0b69ff" style={styles.loader} />
+        ) : (
+          <MovieSection title="Latest Releases" movies={movies.slice(0, 12)} />
+        )}
+        <Link href="/" style={styles.backLink}>
+          <Text style={styles.linkText}>Back to Home</Text>
+        </Link>
+      </ScrollView>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8fafc',
+  },
+  content: {
+    padding: 20,
+    paddingTop: 20,
+  },
+  webContent: {
+    paddingTop: 120,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    marginBottom: 10,
+    color: '#0f172a',
+  },
+  subtitle: {
+    fontSize: 16,
+    lineHeight: 24,
+    marginBottom: 20,
+    color: '#475569',
+  },
+  backLink: {
+    marginTop: 20,
+    paddingVertical: 12,
+  },
+  linkText: {
+    color: '#0b69ff',
+    fontWeight: '700',
+  },
+  loader: {
+    marginVertical: 40,
+  },
+});

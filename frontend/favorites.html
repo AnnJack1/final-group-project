@@ -1,0 +1,57 @@
+<!-- added favorites page, use TopRated to test-->
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/Navbar-Centered-Links-icons.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md bg-body py-3">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <span class="bs-icon-sm bs-icon-rounded bs-icon-primary me-2"></span>
+            <span>Brand</span>
+        </a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-3">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navcol-3">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="TopRated.html">Top-Rated</a></li>
+                <li class="nav-item"><a class="nav-link" href="Trending.html">Trending</a></li>
+                <li class="nav-item"><a class="nav-link" href="Latest.html">Latest Releases</a></li>
+                <li class="nav-item"><a class="nav-link" href="EditorPick.html">Editor's Picks</a></li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="Favorites.html">Favorites</a>
+                </li>
+            </ul>
+
+            <a class="btn btn-primary" role="button" href="Search.html">Search</a>
+        </div>
+    </div>
+</nav>
+
+    <h1 style="padding: 1em;">Favorites</h1>
+
+    <div class="container mt-4">
+        <div id="main" class="row g-4"></div>
+    </div>
+
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

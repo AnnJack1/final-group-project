@@ -1,5 +1,6 @@
 import { Platform, StyleSheet, View, Text } from 'react-native';
 import { Link } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -11,10 +12,16 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={[styles.navbar, Platform.OS === 'web' && styles.sticky]}>
+    <View style={[
+      styles.navbar, 
+      Platform.OS === 'web' && styles.sticky, 
+      (Platform.OS === 'ios' || Platform.OS === 'android') && { paddingTop: insets.top }
+      ]}>
       <View style={styles.brandContainer}>
-        <Text style={styles.brand}>Brand</Text>
+        <Text style={styles.brand}>MovieDB</Text>
       </View>
       <View style={styles.linkRow}>
         {NAV_LINKS.map((item) => (
@@ -65,9 +72,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 8,
     marginBottom: 8,
+    fontSize: 16,
   },
   linkText: {
     color: '#ffffff',
     fontSize: 14,
   },
+  iosNav: {
+    paddingTop: 16,
+  }
 });

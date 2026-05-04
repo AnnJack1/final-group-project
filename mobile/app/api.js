@@ -2,6 +2,15 @@ const API_KEY = 'db1144ba74eb71f6a6761ae20bb58664';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
 
+export default {
+  getTopRated,
+  getTrending,
+  getNowPlaying,
+  getPopular,
+  getMovieDetails,
+  searchMovies,
+};
+
 async function fetchFromTmdb(path) {
   const response = await fetch(`${BASE_URL}${path}&api_key=${API_KEY}`);
   if (!response.ok) {

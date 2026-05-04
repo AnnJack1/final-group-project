@@ -30,7 +30,7 @@ export default function TrendingScreen() {
       <Navbar />
       <ScrollView contentContainerStyle={[styles.content, Platform.OS === 'web' && styles.webContent]}>
         <Text style={styles.title}>Trending</Text>
-        <Text style={styles.subtitle}>These cards follow the frontend Trending page layout.</Text>
+        <Text style={styles.subtitle}>View the trending picks from the TMDB Database.</Text>
         {loading ? (
           <ActivityIndicator size="large" color="#0b69ff" style={styles.loader} />
         ) : (

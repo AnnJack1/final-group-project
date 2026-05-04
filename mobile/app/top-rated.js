@@ -30,7 +30,7 @@ export default function TopRatedScreen() {
       <Navbar />
       <ScrollView contentContainerStyle={[styles.content, Platform.OS === 'web' && styles.webContent]}>
         <Text style={styles.title}>Top-Rated</Text>
-        <Text style={styles.subtitle}>Browse the top-rated picks from the frontend layout.</Text>
+        <Text style={styles.subtitle}>Browse the top-rated picks from the TMDB Database.</Text>
         {loading ? (
           <ActivityIndicator size="large" color="#0b69ff" style={styles.loader} />
         ) : (

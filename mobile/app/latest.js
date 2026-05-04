@@ -30,7 +30,7 @@ export default function LatestScreen() {
       <Navbar />
       <ScrollView contentContainerStyle={[styles.content, Platform.OS === 'web' && styles.webContent]}>
         <Text style={styles.title}>Latest Releases</Text>
-        <Text style={styles.subtitle}>This screen reproduces the Latest Releases section from the frontend files.</Text>
+        <Text style={styles.subtitle}>Browse the latest picks from the TMDB Database.</Text>
         {loading ? (
           <ActivityIndicator size="large" color="#0b69ff" style={styles.loader} />
         ) : (

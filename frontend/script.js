@@ -135,6 +135,15 @@ async function searchMovies() {
     const data = await res.json();
     displayMovies(data.results);
 }
+// ===============================
+// LATEST RELEASES PAGE
+// (Using "now playing" because TMDB "latest" returns only 1 movie)
+// ===============================
+async function loadLatest() {
+    const res = await fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`);
+    const data = await res.json();
+    displayMovies(data.results);
+}
 
 
 
@@ -148,6 +157,17 @@ async function loadDetails() {
 
     const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos`);
     const movie = await res.json();
+
+ // ===============================
+// EDITOR'S PICKS PAGE
+// (Using TMDB "popular" endpoint)
+// ===============================
+async function loadEditorPicks() {
+    const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
+    const data = await res.json();
+    displayMovies(data.results);
+}
+   
 
     // Fill existing placeholders (no design changes)
     const title = document.getElementById("title");
@@ -184,6 +204,10 @@ if (path.includes("Trending.html")) loadTrending();
 if (path.includes("TopRated.html")) loadTopRated();
 if (path.includes("Latest.html")) loadLatest();
 if (path.includes("Details.html")) loadDetails();
+if (path.includes("EditorPick.html")) loadEditorPicks();
+if (path.includes("Latest.html")) loadLatest();
+
+
 
 // Search page uses button onclick="searchMovies()"
 // No pathname check needed

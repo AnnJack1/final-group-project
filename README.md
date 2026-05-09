@@ -1,91 +1,66 @@
-Final Group Project
+FINAL GROUP PROJECT
+-------------------
 Overview
 Final group project for SDEV257: a movie discovery app built with Expo and React Native.
-The mobile app consumes The Movie Database (TMDB) API to display:
-
-Top‑rated films
-
-Trending titles
-
-Latest releases
-
-Editor's picks
-
-Searchable movie results
+The app uses The Movie Database (TMDB) API to display top-rated films, trending titles,
+latest releases, editor's picks, and searchable movie results.
 
 Group Members
-Zane Ketcham
-
-Emma Jackson
-
-Elisabeth Hoyt Frantz
-
-Ashlin Holmes
+- Zane Ketcham
+- Emma Jackson
+- Elisabeth Hoyt Frantz
+- Ashlin Holmes
 
 Features
-Home feed with sections for Top Rated, Trending, Latest Releases, and Editor’s Picks
-
-Dedicated pages for each category
-
-Search screen with live TMDB movie search
-
-Movie details screen with overview, rating, release date, runtime, and external TMDB link
-
-Responsive layout for mobile and web
-
-Reusable components for navigation, movie cards, and movie sections
+- Home feed with Top Rated, Trending, Latest Releases, and Editor's Picks
+- Dedicated pages for each category
+- Search screen with live TMDB movie search
+- Movie details screen with overview, rating, release date, runtime, and TMDB link
+- Responsive layout for mobile and web
+- Reusable components for navigation and movie cards
 
 Tech Stack
-Expo
-
-React Native
-
-Expo Router / React Navigation
-
-TMDB API
-
-ESLint
+- Expo
+- React Native
+- TMDB API
+- React Navigation
+- ESLint
 
 Project Structure
-Code
-mobile/        — main Expo mobile app  
-app/           — route-based application screens and API utilities  
-components/    — reusable UI components (Navbar, MovieSection, MovieCard)  
-constants/     — TMDB API config  
-assets/        — static assets  
-package.json   — dependencies and scripts  
-frontend/      — browser-side assets and scripts  
+mobile/        - main Expo mobile app
+app/           - route-based screens and API utilities
+components/    - reusable UI components
+constants/     - TMDB API configuration
+assets/        - static assets
+package.json   - dependencies and scripts
+
 Getting Started
-Prerequisites
-Node.js
+Prerequisites:
+- Node.js
+- npm
+- Expo CLI (optional)
 
-npm
-
-Expo CLI (optional but helpful)
-
-Install dependencies
-bash
+Install dependencies:
 cd mobile
 npm install
-Run the app
-bash
+
+Run the app:
 npm run start
-Then choose a target:
 
-android
-
-ios
-
-web
+Then choose:
+- android
+- ios
+- web
 
 Or run directly:
-
-bash
 npm run android
 npm run ios
 npm run web
+
 Notes
-The app uses the TMDB API key stored in mobile/app/api.js.
+- TMDB API key is stored in mobile/app/api.js
+- Search results are fetched from TMDB and displayed in a card layout
+- Details screen links to the movie's TMDB page
 
 Search results are fetched from TMDB and displayed in a card layout.
 

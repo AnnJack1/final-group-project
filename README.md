@@ -66,9 +66,3 @@ npm run web
 - The app uses the TMDB API key stored in `mobile/app/api.js`.
 - Search results are fetched from TMDB and displayed in a card layout.
 - The details screen opens the TMDB page for the selected movie when requested.
-
-## Recommended Enhancements
-- Add a favorites/watchlist feature with local storage
-- Support pagination on category and search screens
-- Add error states and offline handling
-- Improve branding, icons, and visual polish

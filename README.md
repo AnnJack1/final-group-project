@@ -6,7 +6,7 @@ Final group project for SDEV257: a movie discovery app built with Expo and React
 ## Group Members
 - Zane Ketcham
 - Emma Jackson
-- Elisabeth Hoyt
+- Elisabeth Hoyt Frantz
 - Ashlin Holmes
 
 ## Features

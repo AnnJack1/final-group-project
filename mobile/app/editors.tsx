@@ -17,7 +17,7 @@ export default function Screen() {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.header}>Top Rated</Text>
+      <Text style={styles.header}>Editor's Choice</Text>
       <View style={styles.grid}>
         {movies.map(movie => (
           <MovieCard key={movie.id} movie={movie} />

@@ -66,3 +66,4 @@ npm run web
 - The app uses the TMDB API key stored in `mobile/app/api.js`.
 - Search results are fetched from TMDB and displayed in a card layout.
 - The details screen opens the TMDB page for the selected movie when requested.
+- Added `mobile/App.js` so the app can be used as an Expo Snack entrypoint with `import 'expo-router/entry';`.
